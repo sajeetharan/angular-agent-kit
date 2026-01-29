@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0",
+  "organization": "Angular Agent Kit",
+  "date": "January 2026",
+  "abstract": "Performance optimization and best practices guide for Angular applications, ordered by impact. Contains rules for change detection, bundle optimization, template performance, RxJS patterns, component architecture, HTTP handling, forms, and testing."
+}

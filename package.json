@@ -1,0 +1,39 @@
+{
+  "name": "angular-agent-kit",
+  "version": "1.0.0",
+  "description": "AI Agent Skills for Angular best practices and performance optimization",
+  "main": "scripts/compile.js",
+  "scripts": {
+    "build": "node scripts/compile.js",
+    "validate": "node scripts/validate.js",
+    "dev": "npm run validate && npm run build"
+  },
+  "keywords": [
+    "angular",
+    "best-practices",
+    "ai-agent",
+    "skills",
+    "performance",
+    "optimization",
+    "copilot",
+    "claude",
+    "cursor"
+  ],
+  "author": "sajeetharan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajeetharan/angular-agent-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sajeetharan/angular-agent-kit/issues"
+  },
+  "homepage": "https://github.com/sajeetharan/angular-agent-kit#readme",
+  "dependencies": {
+    "glob": "^10.3.10",
+    "gray-matter": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
