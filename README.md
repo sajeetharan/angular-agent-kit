@@ -30,7 +30,7 @@ Angular performance optimization guidelines containing 45+ rules across 8 catego
 ## Installation
 
 ```bash
-npx add-skill sajeetharan/angular-agent-kit
+npx skills add sajeetharan/angular-agent-kit
 ```
 
 ## Usage

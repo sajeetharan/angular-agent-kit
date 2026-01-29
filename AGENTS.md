@@ -108,7 +108,7 @@ cp -r skills/angular-best-practices ~/.claude/skills/
 cp -r skills/angular-best-practices ~/.copilot/skills/
 ```
 
-**Using add-skill:**
+**Using skills CLI:**
 ```bash
-npx add-skill sajeetharan/angular-agent-kit
+npx skills add sajeetharan/angular-agent-kit
 ```

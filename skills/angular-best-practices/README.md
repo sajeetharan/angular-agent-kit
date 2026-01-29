@@ -19,10 +19,10 @@ This skill contains 45+ rules across 8 categories, ordered by impact:
 
 ## Installation
 
-### Using add-skill (Recommended)
+### Using skills CLI (Recommended)
 
 ```bash
-npx add-skill sajeetharan/angular-agent-kit
+npx skills add sajeetharan/angular-agent-kit
 ```
 
 This installs the skill into your `.copilot/skills/` directory.
