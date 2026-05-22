@@ -1,20 +1,21 @@
 ---
 name: angular-best-practices
 description: |
-  Angular performance optimization and best practices guidelines for change detection,
-  bundle optimization, templates, RxJS, and component architecture. Use when writing,
-  reviewing, or refactoring Angular code, designing component hierarchies, optimizing
-  performance, or implementing reactive patterns.
+  Angular performance optimization and best practices guidelines for signals/reactivity,
+  change detection, bundle optimization, templates, RxJS, component architecture,
+  dependency injection, routing, forms, accessibility, testing, and tooling. Use when
+  writing, reviewing, or refactoring Angular code, designing component hierarchies,
+  optimizing performance, implementing reactive patterns, or scaffolding new projects.
 
 license: MIT
 metadata:
   author: angular-agent-kit
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Angular Best Practices
 
-Comprehensive performance optimization guide for Angular applications, containing 45+ rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
+Comprehensive performance optimization and modern Angular guide, containing 55+ rules across 12 categories, prioritized by impact to guide automated refactoring and code generation.
 
 ## When to Apply
 
@@ -32,18 +33,30 @@ Reference these guidelines when:
 
 | Priority | Category | Impact | Prefix |
 |----------|----------|--------|--------|
-| 1 | Change Detection | CRITICAL | `cd-` |
-| 2 | Bundle Size Optimization | CRITICAL | `bundle-` |
-| 3 | Template Performance | HIGH | `template-` |
-| 4 | RxJS & Async Operations | HIGH | `rxjs-` |
-| 5 | Component Architecture | MEDIUM-HIGH | `component-` |
-| 6 | HTTP & Data Fetching | MEDIUM | `http-` |
-| 7 | Forms & Validation | MEDIUM | `forms-` |
-| 8 | Testing & Debugging | LOW-MEDIUM | `testing-` |
+| 1 | Signals & Reactivity | CRITICAL | `signals-` |
+| 2 | Change Detection | CRITICAL | `cd-` |
+| 3 | Bundle Size Optimization | CRITICAL | `bundle-` |
+| 4 | Template Performance | HIGH | `template-` |
+| 5 | RxJS & Async Operations | HIGH | `rxjs-` |
+| 6 | Component Architecture | HIGH | `component-` |
+| 7 | Dependency Injection | HIGH | `di-` |
+| 8 | Routing & Navigation | MEDIUM | `routing-` |
+| 9 | HTTP & Data Fetching | MEDIUM | `http-` |
+| 10 | Forms & Validation | MEDIUM | `forms-` |
+| 11 | Accessibility | MEDIUM | `a11y-` |
+| 12 | Testing & Debugging | MEDIUM | `testing-` |
+| 13 | Tooling | MEDIUM | `tooling-` |
 
 ## Quick Reference
 
-### 1. Change Detection (CRITICAL)
+### 1. Signals & Reactivity (CRITICAL)
+
+- `signals-overview` - Use signals for reactive state management
+- `signals-linked-signal` - Use linkedSignal for dependent writable state
+- `signals-resource` - Use resource for async data fetching
+- `signals-effects` - Use effects only for side effects, never for state sync
+
+### 2. Change Detection (CRITICAL)
 
 - `cd-onpush` - Use OnPush change detection strategy
 - `cd-trackby` - Always use trackBy in *ngFor
@@ -52,7 +65,7 @@ Reference these guidelines when:
 - `cd-detach-reattach` - Detach change detection for heavy computations
 - `cd-run-outside-angular` - Run non-UI code outside NgZone
 
-### 2. Bundle Size Optimization (CRITICAL)
+### 3. Bundle Size Optimization (CRITICAL)
 
 - `bundle-lazy-loading` - Lazy load feature modules
 - `bundle-tree-shaking` - Ensure tree-shakeable providers
@@ -61,7 +74,7 @@ Reference these guidelines when:
 - `bundle-preload-strategies` - Implement smart preloading
 - `bundle-avoid-barrel-exports` - Import directly, avoid barrel files
 
-### 3. Template Performance (HIGH)
+### 4. Template Performance (HIGH)
 
 - `template-avoid-function-calls` - Avoid function calls in templates
 - `template-async-pipe` - Use async pipe instead of manual subscriptions
@@ -70,7 +83,7 @@ Reference these guidelines when:
 - `template-optimize-ngif-ngfor` - Never use *ngIf and *ngFor on same element
 - `template-image-optimization` - Use NgOptimizedImage directive
 
-### 4. RxJS & Async Operations (HIGH)
+### 5. RxJS & Async Operations (HIGH)
 
 - `rxjs-avoid-nested-subscriptions` - Never nest subscriptions
 - `rxjs-unsubscribe` - Always unsubscribe (takeUntilDestroyed, DestroyRef)
@@ -79,16 +92,26 @@ Reference these guidelines when:
 - `rxjs-signals-vs-observables` - Prefer signals for synchronous state
 - `rxjs-debounce-throttle` - Debounce user input events
 
-### 5. Component Architecture (MEDIUM-HIGH)
+### 6. Component Architecture (HIGH)
 
 - `component-smart-presentational` - Separate smart and presentational components
+- `component-signal-inputs` - Use signal-based inputs and outputs
 - `component-input-transforms` - Use input transforms for data conversion
 - `component-output-naming` - Follow output naming conventions
 - `component-content-projection` - Use content projection effectively
 - `component-dynamic-components` - Load components dynamically when needed
 - `component-host-directives` - Compose behavior with host directives
 
-### 6. HTTP & Data Fetching (MEDIUM)
+### 7. Dependency Injection (HIGH)
+
+- `di-inject-function` - Use inject() function over constructor injection
+
+### 8. Routing & Navigation (MEDIUM)
+
+- `routing-guards` - Use functional route guards
+- `routing-rendering-strategies` - Choose correct rendering strategy (CSR/SSR/SSG)
+
+### 9. HTTP & Data Fetching (MEDIUM)
 
 - `http-interceptors` - Use interceptors for cross-cutting concerns
 - `http-caching` - Implement HTTP caching strategies
@@ -97,8 +120,9 @@ Reference these guidelines when:
 - `http-typed-responses` - Always type HTTP responses
 - `http-error-handling` - Implement centralized error handling
 
-### 7. Forms & Validation (MEDIUM)
+### 10. Forms & Validation (MEDIUM)
 
+- `forms-signal-forms` - Use signal forms for Angular v21+ apps
 - `forms-reactive-over-template` - Prefer reactive forms for complex forms
 - `forms-typed-forms` - Use strictly typed reactive forms
 - `forms-custom-validators` - Create reusable custom validators
@@ -106,14 +130,23 @@ Reference these guidelines when:
 - `forms-control-value-accessor` - Implement ControlValueAccessor correctly
 - `forms-form-arrays` - Handle dynamic form arrays efficiently
 
-### 8. Testing & Debugging (LOW-MEDIUM)
+### 11. Accessibility (MEDIUM)
 
+- `a11y-angular-aria` - Use Angular Aria for accessible components
+
+### 12. Testing & Debugging (MEDIUM)
+
+- `testing-zoneless-async` - Use zoneless async-first testing pattern
 - `testing-component-harness` - Use component harnesses
 - `testing-mock-services` - Mock services properly
 - `testing-async-testing` - Use fakeAsync/tick for async tests
 - `testing-change-detection` - Trigger change detection in tests
 - `testing-marble-testing` - Use marble testing for RxJS
 - `testing-performance-profiling` - Profile with Angular DevTools
+
+### 13. Tooling (MEDIUM)
+
+- `tooling-cli-generate` - Use Angular CLI for code generation and dependencies
 
 ## How to Use
 
